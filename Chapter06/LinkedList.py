@@ -5,7 +5,7 @@ List_ADT = """
 ● insert(pos, e)     : pos 위치에 새로운 요소 e를 삽입한다. O(n)
 ● delete(pos)        : pos 위치에 있는 요소를 꺼내고(삭제) 반환한다. O(n)
 ● isEmpty()          : 리스트가 비어있는지를 검사한다.
-● getEntry(pos)      : pos 위치에 있는 요소를 반환한다. O(1)
+● getEntry(pos)      : pos 위치에 있는 요소를 반환한다. O(n)
 ● size()             : 리스트 안의 요소의 개수를 반환한다.
 ● clear()            : 리스트를 초기화한다.
 ● find(item)         : 리스트에서 item이 있는지 찾아 인덱스를 반환한다.
@@ -40,6 +40,14 @@ class LinkedList:
             print(node.data, end=' ')
             node = node.link
         print()
+    def reverseDisplay(self, size, msg=''):
+        node = self.head
+        for _ in range(size-1):
+            node = node.link
+        print(msg, node.data, end=' ')
+        size -= 1
+        if size != 0:
+            return self.reverseDisplay(size)
     def getNode(self, pos):
         if pos < 0: return None
         node = self.head
@@ -87,3 +95,10 @@ class LinkedList:
 # s.display('단순연결리스트로 구현한 리스트(삭제 x 3) : ')
 # s.clear()
 # s.display('단순연결리스트로 구현한 리스트(정리 후) : ')
+
+# reverseDisplay Test Code
+# s = LinkedList()
+# s.display("단순연결리스트로 구현한 리스트(초기상태) : ")
+# s.insert(0, 'D'); s.insert(0, 'C'); s.insert(0, 'B'); s.insert(0, 'A')
+# # s.display("삽입 x 5 : ")
+# # s.reverseDisplay(s.size())
